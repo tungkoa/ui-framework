@@ -1,0 +1,78 @@
+{
+  "name": "talon",
+  "amdName": "talon",
+  "version": "10.22.1",
+  "private": false,
+  "description": "talon",
+  "main": "dist/talon.js",
+  "module": "dist/talon.module.js",
+  "umd:main": "dist/talon.umd.js",
+  "unpkg": "dist/talon.min.js",
+  "source": "src/index.js",
+  "license": "MIT",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "prepare": "husky && run-s build && check-export-map",
+    "build": "npm-run-all --parallel build:*",
+    "build:core": "microbundle build --raw --no-generateTypes -f cjs,esm,umd --compress=false",
+    "build:core-min": "microbundle build --raw --no-generateTypes -f cjs,esm,umd,iife src/cjs.js -o dist/talon.min.js",
+    "build:hooks": "microbundle build --raw --no-generateTypes -f cjs,esm,umd --cwd hooks  --compress=false",
+    "build:jsx": "microbundle build --raw --no-generateTypes -f cjs,esm,umd --cwd jsx-runtime --compress=false",
+    "dev": "microbundle watch --raw --no-generateTypes --format cjs,esm,umd",
+    "dev:hooks": "microbundle watch --raw --no-generateTypes --format cjs --cwd hooks",
+    "lint": "run-s oxlint tsc",
+    "tsc": "tsc -p jsconfig-lint.json"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,mjs,cjs,ts,tsx,yml,json,html,md,css,scss}": [
+      "biome format --write --no-errors-on-unmatched"
+    ]
+  },
+  "devDependencies": {
+    "@actions/github": "^5.0.0",
+    "@actions/glob": "^0.2.0",
+    "@babel/core": "^7.7.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.6.2",
+    "@babel/plugin-transform-react-jsx": "^7.7.0",
+    "@babel/plugin-transform-react-jsx-source": "^7.7.4",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
+    "@biomejs/biome": "1.7.3",
+    "@types/chai": "^4.1.2",
+    "@types/mocha": "^5.0.0",
+    "@types/node": "^14.14.10",
+    "@types/sinon": "^9.0.11",
+    "babel-plugin-istanbul": "^6.0.0",
+    "babel-plugin-transform-async-to-promises": "^0.8.15",
+    "babel-plugin-transform-rename-properties": "0.1.0",
+    "benchmark": "^2.1.4",
+    "chai": "^4.1.2",
+    "check-export-map": "^1.3.0",
+    "coveralls": "^3.0.0",
+    "cross-env": "^7.0.2",
+    "diff": "^5.0.0",
+    "errorstacks": "^2.4.0",
+    "esbuild": "^0.14.50",
+    "husky": "^9.0.11",
+    "kolorist": "^1.2.10",
+    "lint-staged": "^10.5.2",
+    "lodash": "^4.17.20",
+    "microbundle": "^0.15.1",
+    "mocha": "^8.2.1",
+    "npm-merge-driver-install": "^1.1.1",
+    "npm-run-all": "^4.0.0",
+    "oxlint": "^0.3.4",
+    "prop-types": "^15.7.2",
+    "sade": "^1.7.4",
+    "sinon": "^9.2.3",
+    "sinon-chai": "^3.5.0",
+    "typescript": "^4.9.5",
+    "undici": "^4.12.0"
+  },
+  "overrides": {
+    "webdriverio": "7.30.2"
+  },
+  "volta": {
+    "node": "20.9.0"
+  }
+}

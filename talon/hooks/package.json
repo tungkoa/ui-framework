@@ -1,0 +1,35 @@
+{
+  "name": "talon-hooks",
+  "amdName": "talonHooks",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Hook addon for Talon",
+  "main": "dist/hooks.js",
+  "module": "dist/hooks.module.js",
+  "umd:main": "dist/hooks.umd.js",
+  "source": "src/index.js",
+  "license": "MIT",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "microbundle build --raw --compress=false",
+    "dev": "microbundle watch --raw --format cjs",
+    "test": "npm-run-all build --parallel test:karma",
+    "test:karma": "karma start test/karma.conf.js --single-run",
+    "test:karma:watch": "karma start test/karma.conf.js --no-single-run"
+  },
+  "peerDependencies": {
+    "talon": "^10.0.0"
+  },
+  "mangle": {
+    "regex": "^_"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "browser": "./dist/hooks.module.js",
+      "umd": "./dist/hooks.umd.js",
+      "import": "./dist/hooks.mjs",
+      "require": "./dist/hooks.js"
+    }
+  }
+}

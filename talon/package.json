@@ -19,6 +19,7 @@
     "build:hooks": "microbundle build --raw --no-generateTypes -f cjs,esm,umd --cwd hooks  --compress=false",
     "build:jsx": "microbundle build --raw --no-generateTypes -f cjs,esm,umd --cwd jsx-runtime --compress=false",
     "dev": "microbundle watch --raw --no-generateTypes --format cjs,esm,umd",
+    "dev:nano": "microbundle watch --raw --no-generateTypes --format cjs,esm,umd",
     "dev:hooks": "microbundle watch --raw --no-generateTypes --format cjs --cwd hooks",
     "lint": "run-s oxlint tsc",
     "tsc": "tsc -p jsconfig-lint.json"
